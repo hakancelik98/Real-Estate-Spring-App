@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Emlak Detayı</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Emlak Bilgileri</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Emlak Türü</th>
+            <td th:text="${property.propertyType}"></td>
+        </tr>
+        <tr>
+            <th>Metrekare</th>
+            <td th:text="${property.squareMeters}"></td>
+        </tr>
+        <tr>
+            <th>Fiyat</th>
+            <td th:text="${property.fiyat}"></td>
+        </tr>
+        <tr>
+            <th>Adres</th>
+            <td th:text="${property.address}"></td>
+        </tr>
+        <tr>
+            <th>Açıklama</th>
+            <td th:text="${property.description}"></td>
+        </tr>
+        <tr>
+            <th>Başlık</th>
+            <td th:text="${property.title}"></td>
+        </tr>
+        <tr>
+            <th>Oda Sayısı</th>
+            <td th:text="${property.roomCount}"></td>
+        </tr>
+        <tr>
+            <th>Kat</th>
+            <td th:text="${property.floor}"></td>
+        </tr>
+        <tr>
+            <th>Bina Kat Sayısı</th>
+            <td th:text="${property.buildingFloors}"></td>
+        </tr>
+        <tr>
+            <th>Isıtma Türü</th>
+            <td th:text="${property.heatingType}"></td>
+        </tr>
+        <tr>
+            <th>Sahibi</th>
+            <td th:text="${property.owner.firstName + ' ' + property.owner.lastName}"></td>
+        </tr>
+        <tr>
+            <th>Sahibinin Telefonu</th>
+            <td th:text="${property.owner.phone}"></td>
+        </tr>
+        <tr>
+            <th>Sahibinin Cep Telefonu</th>
+            <td th:text="${property.owner.mobilePhone}"></td>
+        </tr>
+        <tr>
+            <th>Sahibinin E-postası</th>
+            <td th:text="${property.owner.email}"></td>
+        </tr>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

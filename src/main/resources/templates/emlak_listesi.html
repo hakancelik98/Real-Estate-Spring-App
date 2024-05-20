@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlak Sayfası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/emlak_listesi.css}" />
+</head>
+<body>
+<div class="container my-2">
+    <h3>Müşteriye Ait Emlaklar</h3>
+    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#createPropertyModal">Yeni Emlak Ekle</button>
+    <div class="modal fade" id="createPropertyModal" tabindex="-1" role="dialog" aria-labelledby="createPropertyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPropertyModalLabel">Yeni Emlak</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" th:action="@{/saveProperty}" th:object="${property}" method="POST">
+                        <input type="hidden" name="customerId" th:value="${customerId}" />
+                        <input type="hidden" name="id" th:value="${id}" />
+                        <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="propertyType">Emlak Türü</label>
+                                    <select required id="propertyType" th:field="*{propertyType}" class="form-control">
+                                        <option value="">Emlak Türü Seçiniz</option>
+                                        <option  value="RENT">Kiralık</option>
+                                        <option selected value="SALE">Satılık</option>
+                                    </select>
+                                </div>
+                                <label for="title">Başlık</label>
+                                <input required type="text" id="title" th:field="*{title}" placeholder="Başlık" class="form-control mb-4">
+                                <label for="fiyat">Fiyat</label>
+                                <input required type="text" id="fiyat" th:field="*{fiyat}" placeholder="Fiyat" class="form-control mb-4">
+                                <label required for="description">Açıklama</label>
+                                <textarea id="description" th:field="*{description}" placeholder="Açıklama" class="form-control mb-4" rows="8"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="squareMeters">Metrekare</label>
+                                <input required type="text" id="squareMeters" th:field="*{squareMeters}" pattern="\d*"  title="Lütfen sadece sayı giriniz" placeholder="Metrekare" class="form-control mb-4">
+                                <label for="adres">Adres</label>
+                                <input required type="text" id="adres" th:field="*{address}" placeholder="Adres" class="form-control mb-4">
+                                <label for="roomCount">Oda Sayısı</label>
+                                <input required type="text" id="roomCount" th:field="*{roomCount}" pattern="\d*"  title="Lütfen sadece sayı giriniz" placeholder="Oda Sayısı" class="form-control mb-4">
+                                <label for="floor">Kat</label>
+                                <input required type="text" id="floor" th:field="*{floor}" placeholder="Kat" pattern="\d*"  title="Lütfen sadece sayı giriniz" class="form-control mb-4">
+                                <label for="buildingFloors">Bina Kat Sayısı</label>
+                                <input type="text" id="buildingFloors" th:field="*{buildingFloors}" pattern="\d*"  title="Lütfen sadece sayı giriniz" placeholder="Bina Kat Sayısı" class="form-control mb-4">
+                                <label for="heatingType">Isınma Tipi</label>
+                                <input type="text" id="heatingType" th:field="*{heatingType}" placeholder="Isınma Tipi" class="form-control mb-4">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-info">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Emlak Türü</th>
+            <th>Başlık</th>
+            <th>Fiyat</th>
+            <th>Açıklama</th>
+            <th>Metrekare</th>
+            <th>Oda Sayısı</th>
+            <th>Kat</th>
+            <th>Bina Kat Sayısı</th>
+            <th>Isınma Tipi</th>
+            <th colspan="2">İşlemler</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="property:${allPropertiesList}">
+            <td hidden="true" th:text="${property.id}"></td>
+            <td th:text="${property.propertyType.getDisplayValue()}"></td>
+            <td th:text="${property.title}"></td>
+            <td th:text="${property.fiyat}"></td>
+            <td th:text="${property.description}"></td>
+            <td th:text="${property.squareMeters}"></td>
+            <td th:text="${property.roomCount}"></td>
+            <td th:text="${property.floor}"></td>
+            <td th:text="${property.buildingFloors}"></td>
+            <td th:text="${property.heatingType}"></td>
+            <td><button class="btn btn-primary updatePropertyBtn" data-toggle="modal" data-target="#createPropertyModal"
+                        th:data-id="${property.id}"
+                        th:data-title="${property.title}"
+                        th:data-fiyat="${property.fiyat}"
+                        th:data-description="${property.description}"
+                        th:data-address="${property.address}"
+                        th:data-square-meters="${property.squareMeters}"
+                        th:data-room-count="${property.roomCount}"
+                        th:data-floor="${property.floor}">
+                Emlak Güncelle
+            </button>
+        </td>
+            <td>
+                <a th:href="@{/deleteEmlak/{id}(id=${property.id})}" onclick="return confirm('Emlak kaydı silinecek. Silmek istediğinize emin misiniz?');"  class="btn btn-danger">
+                Sil
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/searchProperties}">Emlak Arama Sayfasına Git</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.updatePropertyBtn').click(function() {
+            var propertyId = $(this).data('id');
+            var title = $(this).data('title');
+            var fiyat = $(this).data('fiyat');
+            var description = $(this).data('description');
+            var squareMeters = $(this).data('square-meters');
+            var address = $(this).data('address');
+            var roomCount = $(this).data('room-count');
+            var floor = $(this).data('floor');
+
+            $('#createPropertyModal input[name="id"]').val(propertyId);
+            $('#createPropertyModal input[name="title"]').val(title);
+            $('#createPropertyModal input[name="fiyat"]').val(fiyat);
+            $('#createPropertyModal input[name="address"]').val(address);
+            $('#createPropertyModal textarea[name="description"]').val(description);
+            $('#createPropertyModal input[name="squareMeters"]').val(squareMeters);
+            $('#createPropertyModal input[name="roomCount"]').val(roomCount);
+            $('#createPropertyModal input[name="floor"]').val(floor);
+
+            $('#createPropertyModal form').attr('action', '/saveProperty');
+            $('#createPropertyModal .modal-title').text('Güncelle');
+            $('#createPropertyModal').modal('show');
+        });
+    });
+</script>
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

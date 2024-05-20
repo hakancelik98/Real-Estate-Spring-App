@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Emlak Yönetim Sistemi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/yeni_emlakci.css}" />
+</head>
+<body>
+<div class="container">
+    <h1 class="page-titleEYS">Emlak Yönetim Sistemi</h1>
+    <hr>
+    <h5>Emlak İşletmesi Ekle</h5>
+
+    <form action="#" th:action="@{/save}" th:object="${estateAgent}" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="agentName">İşyeri Adı</label>
+                <input required type="text" id="agentName" th:field="*{agentName}" pattern="[a-zA-Z ]*" title="Lütfen sadece alfabetik karakterler giriniz" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="authorizedPerson">Yetkili Kişi</label>
+                <input required  type="text" id="authorizedPerson" th:field="*{authorizedPerson}" pattern="[a-zA-Z ]*" title="Lütfen sadece alfabetik karakterler giriniz" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="address">Adres</label>
+                <input required type="text" id="address" th:field="*{address}" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Telefon</label>
+                <input required type="text" pattern="\d*" title="Lütfen sadece sayı giriniz" id="phone" th:field="*{phone}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fax">Fax</label>
+                <input type="text" pattern="\d*" title="Lütfen sadece sayı giriniz" id="fax" th:field="*{fax}" class="form-control">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-info">İşletme Ekle</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}">İşletme Listesine dön</a>
+</div>
+</body>
+</html>

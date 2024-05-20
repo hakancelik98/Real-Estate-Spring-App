@@ -1,0 +1,89 @@
+    body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h3 {
+            margin: 20px 0;
+        }
+
+        .table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table thead th {
+            background-color: #343a40;
+            color: #fff;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+        }
+
+        .table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .table tbody td {
+            padding: 10px;
+            border: none;
+        }
+
+.btn-primaryEA {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    margin-right: 10px;
+    margin-left: auto;
+}
+.btn-primaryEA:hover {
+    background-color: black;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: #fff;
+}
+.page-titleIAM {
+    font-size: 48px;
+    color: #383838;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 90px;
+}
+.butonlar{
+    margin-bottom: -20px;
+}

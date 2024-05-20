@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Personel Yönetim Sistemi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/emlakci_guncelle.css}" />
+</head>
+<body>
+<div class="container">
+    <h1 class="page-titleEYS">Emlak Yönetim Sistemi</h1>
+    <hr>
+    <h5>İşletme Güncelle</h5>
+
+    <form action="#" th:action="@{/save}" th:object="${estateAgent}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="agentName">İşletme Adı</label>
+                <input type="text" id="agentName" th:field="*{agentName}" pattern="[a-zA-Z]*" title="Lütfen sadece alfabetik karakterler giriniz" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="authorizedPerson">Yetkili Kişi</label>
+                <input type="text" id="authorizedPerson" th:field="*{authorizedPerson}" pattern="[a-zA-Z]*" title="Lütfen sadece alfabetik karakterler giriniz" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="address">Adres</label>
+                <input type="text" id="address" th:field="*{address}" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Telefon</label>
+                <input type="text" pattern="\d*" title="Lütfen sadece sayı giriniz" id="phone" th:field="*{phone}" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fax">Fax</label>
+                <input type="text" pattern="\d*" title="Lütfen sadece sayı giriniz" id="fax" th:field="*{fax}" class="form-control">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-info">İşletmeyi Güncelle</button>
+    </form>
+
+    <hr>
+
+    <a th:href="@{/}">İşletme Listesine Geri Dön</a>
+</div>
+</body>
+</html>
